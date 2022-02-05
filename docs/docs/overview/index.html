@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.68.3" />
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+<link rel="alternate" type="application/rss&#43;xml" href="https://mantielero.github.io/VapourSynth.nim/docs/overview/index.xml">
+
+
+<link rel="shortcut icon" href="/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/VapourSynth.nim/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/VapourSynth.nim/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/VapourSynth.nim/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/VapourSynth.nim/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/VapourSynth.nim/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/VapourSynth.nim/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/VapourSynth.nim/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/VapourSynth.nim/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/VapourSynth.nim/favicons/android-192x192.png" sizes="192x192">
+
+<title>Overview | VapourSynth.nim</title><meta property="og:title" content="Overview" />
+<meta property="og:description" content="What is VapourSynth.nim and how can it help me?
+" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://mantielero.github.io/VapourSynth.nim/docs/overview/" />
+<meta property="og:site_name" content="VapourSynth.nim" />
+<meta itemprop="name" content="Overview">
+<meta itemprop="description" content="What is VapourSynth.nim and how can it help me?
+"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Overview"/>
+<meta name="twitter:description" content="What is VapourSynth.nim and how can it help me?
+"/>
+
+
+
+
+
+<link rel="preload" href="/VapourSynth.nim/scss/main.min.bb1ca766e41a0e946ad64cf4afe1ef9cda4b8f5ac09cb29881652bb359f0df3c.css" as="style">
+<link href="/VapourSynth.nim/scss/main.min.bb1ca766e41a0e946ad64cf4afe1ef9cda4b8f5ac09cb29881652bb359f0df3c.css" rel="stylesheet" integrity="">
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+
+  </head>
+  <body class="td-section">
+    <header>
+      
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+        <a class="navbar-brand" href="/VapourSynth.nim/">
+		<span class="navbar-logo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1e3 1e3" enable-background="new 0 0 1000 1000"><a xlink:href="http://www.onlinewebfonts.com"><g><g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)"><path style="fill:#fff" d="M1349.3 5040.5C741.5 4882 271.2 4393.1 136.4 3785.4c-37-161.2-39.6-480.9-34.3-2470.6 7.9-2560.5-7.9-2351.7 203.5-2571 179.7-192.9 253.7-214.1 724-224.6l414.9-10.6v-187.6c0-306.5 111-459.8 354.1-486.2 66.1-7.9 121.6-18.5 121.6-23.8s-274.8-504.7-610.4-1109.8C654.3-4474.7 646.4-4493.2 741.5-4678.1c84.6-161.2 169.1-190.3 573.4-190.3 330.3.0 367.3 5.3 446.6 58.1 68.7 47.6 235.2 327.6 803.3 1350.2l716.1 1286.8 195.5-5.3 195.5-7.9 676.4-1215.5c827.1-1485 763.6-1379.3 864.1-1426.9 118.9-55.5 721.4-55.5 837.6.0 118.9 58.1 185 158.5 195.5 301.2 10.6 116.3-13.2 166.5-607.7 1231.3-599.8 1075.4-615.7 1109.8-549.6 1117.7 37 2.6 118.9 26.4 179.7 47.6 158.6 58.1 222 169.1 237.8 433.4l15.8 211.4h190.3c338.2.0 578.7 134.7 721.4 406.9 68.7 129.5 71.3 153.3 79.3 605.1 5.3 256.3 15.9 467.7 21.2 467.7 7.9.0 618.3-333 1358.2-742.5l1347.6-742.5 222 7.9c192.9 10.6 232.5 18.5 293.3 76.6 150.6 137.4 145.3 50.2 145.3 2462.7.0 2124.5-2.6 2232.8-50.2 2320-76.6 145.3-192.9 198.2-425.4 198.2h-198.2l-1347.6-747.8L6530.9 2081l-15.8 811.2c-10.6 652.7-23.8 845.6-60.8 969.7-163.8 570.8-639.5 1030.5-1220.8 1178.5-668.5 171.7-1416.3-111-1794.2-679.1-58.1-84.5-111-163.8-121.6-174.4-10.6-13.2-74 60.8-140 163.8-68.7 103.1-192.9 245.8-274.8 319.7-169.1 153.3-496.8 322.4-731.9 383.1C1957 5106.6 1581.8 5101.3 1349.3 5040.5zM1935.9 4007.3c171.8-44.9 364.6-224.6 422.8-399 50.2-150.6 39.6-338.2-26.4-467.7-100.4-190.3-348.8-346.2-552.3-346.2-214 0-446.6 148-552.3 354.1-145.3 272.2-21.1 657.9 256.3 800.6C1653.1 4039 1756.2 4052.2 1935.9 4007.3zM5003.7 3994.1c129.5-26.4 290.6-161.2 362-306.5 301.2-602.5-428.1-1175.9-938-737.2-140 118.9-206.1 264.2-208.7 454.5.0 285.4 208.7 552.2 475.6 602.5C4808.1 4028.5 4850.4 4025.8 5003.7 3994.1zM4826.6 878.8V205H3307.3 1787.9v673.8 673.8h1519.4 1519.4V878.8z"/></g></g></a></svg></span><span class="text-uppercase font-weight-bold">VapourSynth.nim</span>
+	</a>
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="/VapourSynth.nim/about/" ><span>About</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link active" href="/VapourSynth.nim/docs/" ><span class="active">Documentation</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="/VapourSynth.nim/blog/" ><span>Blog</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="/VapourSynth.nim/community/" ><span>Community</span></a>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+	<div class="navbar-nav d-none d-lg-block">
+<input type="search" class="form-control td-search-input" placeholder="&#xf002 Search this site…" aria-label="Search this site…" autocomplete="off">
+
+</div>
+</nav>
+
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <div class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            
+
+
+
+
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+  
+  <form class="td-sidebar__search d-flex align-items-center">
+    
+<input type="search" class="form-control td-search-input" placeholder="&#xf002 Search this site…" aria-label="Search this site…" autocomplete="off">
+
+
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  
+  <nav class="collapse td-sidebar-nav pt-2 pl-4" id="td-section-nav">
+    
+    
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/VapourSynth.nim/docs/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation</a>
+  </li>
+  <ul>
+    <li class="collapse show" id="vapoursynthnimdocs">
+      
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/VapourSynth.nim/docs/overview/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Overview</a>
+  </li>
+  <ul>
+    <li class="collapse show" id="vapoursynthnimdocsoverview">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/VapourSynth.nim/docs/getting-started/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Getting Started</a>
+  </li>
+  <ul>
+    <li class="collapse " id="vapoursynthnimdocsgetting-started">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-vapoursynthnimdocsgetting-startedinstallation" href="/VapourSynth.nim/docs/getting-started/installation/">Installation</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-vapoursynthnimdocsgetting-startedintro" href="/VapourSynth.nim/docs/getting-started/intro/">Introduction</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-vapoursynthnimdocsgetting-startedslicing" href="/VapourSynth.nim/docs/getting-started/slicing/">Slicing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-vapoursynthnimdocsgetting-startedfunctions" href="/VapourSynth.nim/docs/getting-started/functions/">Functions</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/VapourSynth.nim/docs/filters/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Filters</a>
+  </li>
+  <ul>
+    <li class="collapse " id="vapoursynthnimdocsfilters">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-vapoursynthnimdocsfiltersvapoursynth-filter" href="/VapourSynth.nim/docs/filters/vapoursynth-filter/">VapourSynth plugin</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-vapoursynthnimdocsfiltersbenchmarking" href="/VapourSynth.nim/docs/filters/benchmarking/">Benchmarking</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/VapourSynth.nim/docs/concepts/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Concepts</a>
+  </li>
+  <ul>
+    <li class="collapse " id="vapoursynthnimdocsconcepts">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/VapourSynth.nim/docs/todo/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">TODO</a>
+  </li>
+  <ul>
+    <li class="collapse " id="vapoursynthnimdocstodo">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/VapourSynth.nim/docs/tutorials/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Tutorials</a>
+  </li>
+  <ul>
+    <li class="collapse " id="vapoursynthnimdocstutorials">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/VapourSynth.nim/docs/reference/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Reference</a>
+  </li>
+  <ul>
+    <li class="collapse " id="vapoursynthnimdocsreference">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-vapoursynthnimdocsreferenceparameter-reference" href="/VapourSynth.nim/docs/reference/parameter-reference/">Parameter Reference</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+    </li>
+  </ul>
+</ul>
+
+  </nav>
+</div>
+
+
+
+
+          </div>
+          <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
+            
+
+
+
+
+
+
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+
+
+
+
+
+<a href="https://github.com/google/docsy-example/edit/master/content/en/docs/Overview/_index.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+<a href="https://github.com/google/docsy-example/issues/new?title=Overview" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+
+
+<a href="https://github.com/mantielero/VapourSynth.nim/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
+
+</div>
+
+
+
+
+
+
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-it">What is it?</a></li>
+    <li><a href="#why">Why?</a></li>
+    <li><a href="#limitations">Limitations</a></li>
+    <li><a href="#guarantees">Guarantees</a></li>
+    <li><a href="#where-should-i-go-next">Where should I go next?</a></li>
+  </ul>
+</nav>
+
+
+
+          </div>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
+	<ol class="breadcrumb spb-1">
+		
+
+
+
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="https://mantielero.github.io/VapourSynth.nim/docs/">Documentation</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="https://mantielero.github.io/VapourSynth.nim/docs/overview/">Overview</a>
+</li>
+
+	</ol>
+</nav	>
+
+            
+<div class="td-content">
+	<h1>Overview</h1>
+        <div class="lead">What is VapourSynth.nim and how can it help me?</div>
+	
+	<h2 id="what-is-it">What is it?</h2>
+<p>VapourSynth.nim wraps <a href="https://www.vapoursynth.com">VapourSynth</a> in the <a href="https://nim-lang.org/">Nim</a> programming language (formerly known as Nimrod).</p>
+<ul>
+<li>
+<p><strong>VapourSynth</strong> is a frame server. This is a library that enables you process video. There are plenty of plugins which contain filters. They can be combined in Python scripts. This enables the creation of complex pipelines allowing you to perform anything from adjusting colours, video stabilization, advance deinterlacing, <a href="https://youtu.be/OulrI4yaz64">video restoration</a>, &hellip;</p>
+</li>
+<li>
+<p><strong>Nim</strong> is a language that compiles to C and it is optionally garbage collected. It gives you C-like performance. But on the other hand, it gives you Python-like syntax.</p>
+<p>It is not an easy language to learn (but it is not as complex as Rust). The difficulty comes in my opinion because all the features it brings. Nonetheless, when you use it, it feels like they have taken a lot of good decissions. In my opinion, Nim it is like Go, but more powerful.</p>
+</li>
+</ul>
+<h2 id="why">Why?</h2>
+<p>In VapourSynth, you have scripts made in Python and filters made in C or C++.</p>
+<p>Nim provides metaprogramming, so it makes easy to create Domain Specific Language. I used this feature in order to create custom filters.</p>
+<p>So in VapourSynth.nim you have scripts made in Nim and filters made in&hellip; Nim again. So it solves the two language problem that Julia aims to solve as well.</p>
+<p>Nim is a compiled language, so you only need to have installed the vapoursynth library and whatever plugin you are using. There is no need for an additional runtime as in the case of python. This makes easier the deployment (as in Go), because you end up with just one binary.</p>
+<h2 id="limitations">Limitations</h2>
+<p>This is a toy project that I made in order to learn Nim. I just made it work. But I haven&rsquo;t implemented all the capabilities that might be necessary:</p>
+<ul>
+<li>I haven&rsquo;t check with all the format that one migth face.</li>
+<li>I integrate only the plugins available in my system. Every plugin you use needs a wrapper. I have a binary in order to create wrapper for whatever plugin is available in your system.</li>
+<li>I am not a pro, and this is the first time I wrap a C library (well I had an attemp with Julia). I am not a C developper, so you might expect all sort of things (memory leaks, &hellip; who knows).</li>
+<li>It does not use <code>.vpy</code>files.</li>
+<li>It does not use AviSynth plugins.</li>
+<li>Filters that depend on python functions won&rsquo;t work.</li>
+</ul>
+<h2 id="guarantees">Guarantees</h2>
+<p>None. I earn nothing with this project and I am not a proffessional developer, so this library might bite your hand.</p>
+<h2 id="where-should-i-go-next">Where should I go next?</h2>
+<ul>
+<li><a href="/getting-started/">Getting Started</a>: Get started with $project</li>
+<li><a href="/examples/">Examples</a>: Check out some example code!</li>
+</ul>
+
+        <div class="section-index">
+    
+    
+    
+    
+    <hr class="panel-line">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    
+</div>
+
+	
+		<style>
+  .feedback--answer {
+    display: inline-block;
+  }
+  .feedback--answer-no {
+    margin-left: 1em;
+  }
+  .feedback--response {
+    display: none;
+    margin-top: 1em;
+  }
+  .feedback--response__visible {
+    display: block;
+  }
+</style>
+<h2 class="feedback--title">Feedback</h2>
+<p class="feedback--question">Was this page helpful?</p>
+<button class="feedback--answer feedback--answer-yes">Yes</button>
+<button class="feedback--answer feedback--answer-no">No</button>
+<p class="feedback--response feedback--response-yes">
+  Glad to hear it! Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.
+</p>
+<p class="feedback--response feedback--response-no">
+  Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.
+</p>
+<script>
+  const yesButton = document.querySelector('.feedback--answer-yes');
+  const noButton = document.querySelector('.feedback--answer-no');
+  const yesResponse = document.querySelector('.feedback--response-yes');
+  const noResponse = document.querySelector('.feedback--response-no');
+  const disableButtons = () => {
+    yesButton.disabled = true;
+    noButton.disabled = true;
+  };
+  const sendFeedback = (value) => {
+    if (typeof ga !== 'function') return;
+    const args = {
+      command: 'send',
+      hitType: 'event',
+      category: 'Helpful',
+      action: 'click',
+      label: window.location.pathname,
+      value: value
+    };
+    ga(args.command, args.hitType, args.category, args.action, args.label, args.value);
+  };
+  yesButton.addEventListener('click', () => {
+    yesResponse.classList.add('feedback--response__visible');
+    disableButtons();
+    sendFeedback(1);
+  });
+  noButton.addEventListener('click', () => {
+    noResponse.classList.add('feedback--response__visible');
+    disableButtons();
+    sendFeedback(0);
+  });
+</script>
+
+		<br />
+	
+	
+	<div class="text-muted mt-5 pt-3 border-top">Last modified April 15, 2019: <a  href="https://github.com/google/docsy-example/commit/0926bf5b4a2ab41492141f886dd7bde5d500c0f3">Making the templatey nature more explicit (0926bf5)</a>
+</div>
+</div>
+
+          </main>
+        </div>
+      </div>
+      
+<footer class="bg-dark py-5 row d-print-none">
+  <div class="container-fluid mx-sm-5">
+    <div class="row">
+      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="User mailing list" aria-label="User mailing list">
+    <a class="text-white" target="_blank" href="https://example.org/mail">
+      <i class="fa fa-envelope"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Twitter" aria-label="Twitter">
+    <a class="text-white" target="_blank" href="https://example.org/twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Stack Overflow" aria-label="Stack Overflow">
+    <a class="text-white" target="_blank" href="https://example.org/stack">
+      <i class="fab fa-stack-overflow"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="GitHub" aria-label="GitHub">
+    <a class="text-white" target="_blank" href="https://github.com/mantielero/VapourSynth.nim">
+      <i class="fab fa-github"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Slack" aria-label="Slack">
+    <a class="text-white" target="_blank" href="https://example.org/slack">
+      <i class="fab fa-slack"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="Developer mailing list" aria-label="Developer mailing list">
+    <a class="text-white" target="_blank" href="https://example.org/mail">
+      <i class="fa fa-envelope"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+        <small class="text-white">&copy; 2020 José María García All Rights Reserved</small>
+        
+	
+		<p class="mt-2"><a href="/VapourSynth.nim/about/">About VapourSynth.nim</a></p>
+	
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </div>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+<script src="/VapourSynth.nim/js/main.min.611a4285e21556b9fd9d1145797a467e90e9ac15df86d930f4d02982775a25ac.js" integrity="sha256-YRpCheIVVrn9nRFFeXpGfpDprBXfhtkw9NApgndaJaw=" crossorigin="anonymous"></script>
+
+
+
+  </body>
+</html>
