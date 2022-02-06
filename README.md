@@ -1,4 +1,4 @@
-# VapourSynth.nim
+# vapoursynth4.nim
 
 This enables video editing using the Nim programming language by means of using VapourSynth.
 
@@ -7,7 +7,6 @@ For more information visit the [web page](https://mantielero.github.io/VapourSyn
 > Everything is work in progress
 
 # TODO
-
 
 ## Adding an audio example
 To support the following:
@@ -23,10 +22,6 @@ In Linux, install [BestAudioSource](https://github.com/vapoursynth/bestaudiosour
 ```bash
 $ yay -S aur/vapoursynth-plugin-bestaudiosource-git
 ```
-
-Then rerun: `tools/plugin_generator`. This will wrap that plugin, creating the file: `plugins/bas.nim`.
-
-Issue: now it is empty.
 
 
 About [set_output](http://vapoursynth.com/doc/pythonreference.html?highlight=pipe#VideoNode.set_output)
