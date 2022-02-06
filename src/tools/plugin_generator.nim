@@ -11,13 +11,10 @@ else:
   const
     libname* = "libvapoursynth.dylib"
 
-import strformat, strutils, os
+import strformat, strutils, os, std/unicode
 import ../wrapper/vapoursynth_wrapper
 
-let
-  API*  = getVapourSynthAPI(4.cint)
-  CORE* = API.createCore(0)
-
+import ../lib/constants
 import ../lib/vsplugins
 
 ## TODO: I use "ptr VSMap" in order to be able to chain functions.
@@ -37,11 +34,16 @@ let KEYWORDS = @["addr", "and", "as", "asm", "bind", "block", "break", "case", "
 "raise", "ref", "return", "shl", "shr", "static", "template", "try", 
 "tuple", "type", "using", "var", "when", "while", "xor", "yield" ]
 
+
+let renames = @[ ("bas", @[("Source", "aSource")]) ]
+
 type
   Plugin = tuple[id:string, namespace:string, description:string]
   #Argument = tuple[name:string, `type`:string, optional:bool]
   Function = tuple[name:string, arguments:seq[Argument]]
 
+
+#let renames = @[("ffms", @[("Source","v")])]
 
 #[ YO CREO QUE YA NO ES NECESARIO
 iterator getPlugins():Plugin =
@@ -122,11 +124,13 @@ proc convertType(`type`:string):string =
            of "data[]":
              "seq[string]"
            of "vnode":
+             #"VNode"
              "ptr VSNode"   
            of "vnode[]":
              "seq[ptr VSNode]"                          
            of "anode":
              "ptr VSNode"   
+             #"ANode"
            of "anode[]":
              "seq[ptr VSNode]"  
            of "clip":
@@ -134,15 +138,62 @@ proc convertType(`type`:string):string =
            of "clip[]":
              "seq[ptr VSNode]"
            of "frame":
-             "ptr VSFrameRef"             
+             "ptr VSFrame"             
            of "frame[]":
-             "seq[ptr VSFrameRef]"               
+             "seq[ptr VSFrame]"               
            of "func":
-             "ptr VSFuncRef"             
+             "ptr VSFunction"             
            of "func[]":
-             "seq[ptr VSFuncRef]"             
+             "seq[ptr VSFunction]"             
            else:
              `type`
+
+proc genSignature( function:ptr VSPluginFunction; 
+                   rename:seq[tuple[oldName,newName:string]]):string =
+  ## creates the function's signature
+  
+  # Function name:
+  # - renames the function to avoid clashes.
+  var fname = function.name
+  for i in rename:
+    if i.oldName == fname:
+      fname = i.newName
+
+  # - first letter to lowercase
+  fname = fname[0].toLowerAscii & fname[1 .. fname.high]
+  result = &"proc {fname}*("
+  
+  
+  var flagFirstArgument = true  # special handling for the first argument 
+  for arg in function.args:
+    var argName = arg.name
+    # If the argument is a Nim keyword, then enclosed between "`" symbol.
+    if argName in KEYWORDS: 
+      argName = &"`{argName}`"
+
+    # Get the appropriate Nim type from the VapourSynth type
+    var newtype = convertType( arg.typ )
+
+    # If not first argument the symbol is added
+    if not flagFirstArgument:  
+      #if arg.optional: 
+        result &= "; "  # Arguments separation
+      #else:
+      #  result &= ", "        
+
+    # first argument is handled ina a special way
+    if arg.typ in ["vnode", "vnode[]", "anode", "anode[]"] and flagFirstArgument:
+      argName = "vsmap"
+      newtype = "ptr VSMap"
+
+    # Different handling for optional and mandatory arguments
+    if not arg.optional: # Mandatory
+      result &= &"{argName}:{newtype}"
+    else:                # Optional
+      result &= &"{argName} = none({newtype})"
+    flagFirstArgument = false
+
+  result &= "):ptr VSMap =\n"
 
 
 proc genBodyForFirstArgument(function:ptr VSPluginFunction):string =
@@ -172,7 +223,7 @@ proc genBodyForFirstArgument(function:ptr VSPluginFunction):string =
         vsmap = "vsmap.get"
     
     result &= &"  {ident}assert( {vsmap}.len != 0, \"the vsmap should contain at least one item\")\n"                 
-    echo result
+    #echo result
 
 
     # Just one clip
@@ -217,10 +268,10 @@ proc genBodyForOtherArguments(function:ptr VSPluginFunction; ini=1):string =
         argName = &"`{argName}`"
       let newtype = convertType( arg.typ )
       let funcName = case newtype:
-                    of "seq[int]", "seq[float]":
-                      "set"
-                    else:
-                      "append"
+                     of "seq[int]", "seq[float]":
+                       "set"
+                     else:
+                       "append"
       # If the argument is a sequence
       if newtype[0..2] == "seq" and funcName != "set":
         if not arg.optional:
@@ -235,7 +286,11 @@ proc genBodyForOtherArguments(function:ptr VSPluginFunction; ini=1):string =
         if not arg.optional:
           result &= &"  args.{funcName}(\"{arg.name}\", {argName})\n"     
         else:
-          result &= &"  if {argName}.isSome: args.{funcName}(\"{arg.name}\", {argName}.get)\n"  
+          if argName == "clip":
+            argName = "vsmap"
+            result &= &"  if {argName}.isSome: args.{funcName}(\"{arg.name}\", clip)\n"   # {argName}.get
+          else:
+            result &= &"  if {argName}.isSome: args.{funcName}(\"{arg.name}\", {argName}.get)\n" 
 
 
 
@@ -243,7 +298,7 @@ proc genBodyForOtherArguments(function:ptr VSPluginFunction; ini=1):string =
 proc addFirstArgument(function:ptr VSPluginFunction):string =
   if function.args.len == 0:
     return ""
-  if not (function.args[0].typ in ["clip", "clip[]"]):
+  if not (function.args[0].typ in ["vnode", "vnode[]"]):
     return ""
   let arg = function.args[0]
   var argName = arg.name
@@ -256,7 +311,7 @@ proc addFirstArgument(function:ptr VSPluginFunction):string =
     result = "  if vsmap.isSome:\n"
     ident = "  "
 
-  if function.args[0].typ == "clip":
+  if function.args[0].typ in @["vnode", "anode"]:
     result &= &"  {ident}args.append(\"{arg.name}\", {argName})"
   else:
     result &= &"  {ident}for item in {argName}:\n"
@@ -267,45 +322,22 @@ proc addFirstArgument(function:ptr VSPluginFunction):string =
 
 
 
-proc genSignature(function:ptr VSPluginFunction):string =
-  result = &"proc {function.name}*("
-  
-  var flagFirstArgument = true
-  for arg in function.args:
-    var argName = arg.name
-    # If the argument is a Nim keyword, then enclused between "`" symbol.
-    if argName in KEYWORDS: 
-      argName = &"`{argName}`"
 
-
-    # Get the appropriate Nim type from the VapourSynth type
-    var newtype = convertType( arg.typ )
-    if not flagFirstArgument:  # If not first argument the symbol is added
-      if arg.optional: 
-        result &= "; "
-      else:
-        result &= ", "        
-
-    # If the first argument is "clip" or "clip[]"
-    if arg.typ in ["vnode", "vnode[]"] and flagFirstArgument:
-      argName = "vsmap"
-      newtype = "ptr VSMap"
-    if not arg.optional: # Mandatory
-      result &= &"{argName}:{newtype}"
-    else:  # Optional
-      result &= &"{argName}= none({newtype})"
-    flagFirstArgument = false
-
-  result &= "):ptr VSMap =\n"
 
 proc genFunction(plugin:ptr VSPlugin, function:ptr VSPluginFunction):string =     
   ## Creates a function from a plugin.       
 
   # Get the arguments
-  let func_signature = genSignature(function)
+  var rename:seq[tuple[oldName,newName:string]] = @[]
+  for item in renames:
+    if item[0] == plugin.namespace:
+      rename = item[1]
+      #echo rename 
+
+  let func_signature = genSignature(function, rename)
 
   let body_first_argument = genBodyForFirstArgument(function)
-  let add_first_argument = addFirstArgument(function)
+  let add_first_argument  = addFirstArgument(function)
   var ini = 1
   if add_first_argument == "":
     ini = 0
@@ -325,10 +357,6 @@ proc genFunction(plugin:ptr VSPlugin, function:ptr VSPluginFunction):string =
   
 
 proc main2 =
-
-  
-  var includes = "import options\n\n"
-  
   for plugin in plugins():
     var source = ""
     for function in functions( plugin ):
@@ -337,7 +365,6 @@ proc main2 =
       echo "  Function: ", function.name
       echo "    Arguments: ", function.args
       echo "    Ret: ", function.ret
-      echo source
 
 
 proc main =
@@ -353,13 +380,10 @@ import ../lib/[constants, vsplugins, vsmap]
       source &= genFunction(plugin, function)
       source &= "\n\n"
 
-    #if plugin.namespace == "resize":
-
-
     let name = &"../plugins/{plugin.namespace}.nim"
     writeFile(name, source)
     echo "[INFO] Written file: ", name
-    includes &= &"include \"{plugin.namespace}.nim\"\n"
+    includes &= &"include {plugin.namespace}\n"
 
   writeFile("../plugins/all_plugins.nim", includes)
   echo "Written file: ", "../plugins/all_plugins.nim"  

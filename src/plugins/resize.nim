@@ -1,4 +1,4 @@
-proc Bicubic*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none(int); matrix= none(int); matrix_s= none(string); transfer= none(int); transfer_s= none(string); primaries= none(int); primaries_s= none(string); range= none(int); range_s= none(string); chromaloc= none(int); chromaloc_s= none(string); matrix_in= none(int); matrix_in_s= none(string); transfer_in= none(int); transfer_in_s= none(string); primaries_in= none(int); primaries_in_s= none(string); range_in= none(int); range_in_s= none(string); chromaloc_in= none(int); chromaloc_in_s= none(string); filter_param_a= none(float); filter_param_b= none(float); resample_filter_uv= none(string); filter_param_a_uv= none(float); filter_param_b_uv= none(float); dither_type= none(string); cpu_type= none(string); prefer_props= none(int); src_left= none(float); src_top= none(float); src_width= none(float); src_height= none(float); nominal_luminance= none(float)):ptr VSMap =
+proc bicubic*(vsmap:ptr VSMap; width = none(int); height = none(int); format = none(int); matrix = none(int); matrix_s = none(string); transfer = none(int); transfer_s = none(string); primaries = none(int); primaries_s = none(string); range = none(int); range_s = none(string); chromaloc = none(int); chromaloc_s = none(string); matrix_in = none(int); matrix_in_s = none(string); transfer_in = none(int); transfer_in_s = none(string); primaries_in = none(int); primaries_in_s = none(string); range_in = none(int); range_in_s = none(string); chromaloc_in = none(int); chromaloc_in_s = none(string); filter_param_a = none(float); filter_param_b = none(float); resample_filter_uv = none(string); filter_param_a_uv = none(float); filter_param_b_uv = none(float); dither_type = none(string); cpu_type = none(string); prefer_props = none(int); src_left = none(float); src_top = none(float); src_width = none(float); src_height = none(float); nominal_luminance = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.resize")
   assert( plug != nil, "plugin \"com.vapoursynth.resize\" not installed properly in your computer") 
@@ -9,7 +9,6 @@ proc Bicubic*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if width.isSome: args.append("width", width.get)
   if height.isSome: args.append("height", height.get)
@@ -52,7 +51,7 @@ proc Bicubic*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none
   API.freeMap(args)
 
 
-proc Bilinear*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none(int); matrix= none(int); matrix_s= none(string); transfer= none(int); transfer_s= none(string); primaries= none(int); primaries_s= none(string); range= none(int); range_s= none(string); chromaloc= none(int); chromaloc_s= none(string); matrix_in= none(int); matrix_in_s= none(string); transfer_in= none(int); transfer_in_s= none(string); primaries_in= none(int); primaries_in_s= none(string); range_in= none(int); range_in_s= none(string); chromaloc_in= none(int); chromaloc_in_s= none(string); filter_param_a= none(float); filter_param_b= none(float); resample_filter_uv= none(string); filter_param_a_uv= none(float); filter_param_b_uv= none(float); dither_type= none(string); cpu_type= none(string); prefer_props= none(int); src_left= none(float); src_top= none(float); src_width= none(float); src_height= none(float); nominal_luminance= none(float)):ptr VSMap =
+proc bilinear*(vsmap:ptr VSMap; width = none(int); height = none(int); format = none(int); matrix = none(int); matrix_s = none(string); transfer = none(int); transfer_s = none(string); primaries = none(int); primaries_s = none(string); range = none(int); range_s = none(string); chromaloc = none(int); chromaloc_s = none(string); matrix_in = none(int); matrix_in_s = none(string); transfer_in = none(int); transfer_in_s = none(string); primaries_in = none(int); primaries_in_s = none(string); range_in = none(int); range_in_s = none(string); chromaloc_in = none(int); chromaloc_in_s = none(string); filter_param_a = none(float); filter_param_b = none(float); resample_filter_uv = none(string); filter_param_a_uv = none(float); filter_param_b_uv = none(float); dither_type = none(string); cpu_type = none(string); prefer_props = none(int); src_left = none(float); src_top = none(float); src_width = none(float); src_height = none(float); nominal_luminance = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.resize")
   assert( plug != nil, "plugin \"com.vapoursynth.resize\" not installed properly in your computer") 
@@ -63,7 +62,6 @@ proc Bilinear*(vsmap:ptr VSMap; width= none(int); height= none(int); format= non
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if width.isSome: args.append("width", width.get)
   if height.isSome: args.append("height", height.get)
@@ -106,7 +104,7 @@ proc Bilinear*(vsmap:ptr VSMap; width= none(int); height= none(int); format= non
   API.freeMap(args)
 
 
-proc Lanczos*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none(int); matrix= none(int); matrix_s= none(string); transfer= none(int); transfer_s= none(string); primaries= none(int); primaries_s= none(string); range= none(int); range_s= none(string); chromaloc= none(int); chromaloc_s= none(string); matrix_in= none(int); matrix_in_s= none(string); transfer_in= none(int); transfer_in_s= none(string); primaries_in= none(int); primaries_in_s= none(string); range_in= none(int); range_in_s= none(string); chromaloc_in= none(int); chromaloc_in_s= none(string); filter_param_a= none(float); filter_param_b= none(float); resample_filter_uv= none(string); filter_param_a_uv= none(float); filter_param_b_uv= none(float); dither_type= none(string); cpu_type= none(string); prefer_props= none(int); src_left= none(float); src_top= none(float); src_width= none(float); src_height= none(float); nominal_luminance= none(float)):ptr VSMap =
+proc lanczos*(vsmap:ptr VSMap; width = none(int); height = none(int); format = none(int); matrix = none(int); matrix_s = none(string); transfer = none(int); transfer_s = none(string); primaries = none(int); primaries_s = none(string); range = none(int); range_s = none(string); chromaloc = none(int); chromaloc_s = none(string); matrix_in = none(int); matrix_in_s = none(string); transfer_in = none(int); transfer_in_s = none(string); primaries_in = none(int); primaries_in_s = none(string); range_in = none(int); range_in_s = none(string); chromaloc_in = none(int); chromaloc_in_s = none(string); filter_param_a = none(float); filter_param_b = none(float); resample_filter_uv = none(string); filter_param_a_uv = none(float); filter_param_b_uv = none(float); dither_type = none(string); cpu_type = none(string); prefer_props = none(int); src_left = none(float); src_top = none(float); src_width = none(float); src_height = none(float); nominal_luminance = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.resize")
   assert( plug != nil, "plugin \"com.vapoursynth.resize\" not installed properly in your computer") 
@@ -117,7 +115,6 @@ proc Lanczos*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if width.isSome: args.append("width", width.get)
   if height.isSome: args.append("height", height.get)
@@ -160,7 +157,7 @@ proc Lanczos*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none
   API.freeMap(args)
 
 
-proc Point*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none(int); matrix= none(int); matrix_s= none(string); transfer= none(int); transfer_s= none(string); primaries= none(int); primaries_s= none(string); range= none(int); range_s= none(string); chromaloc= none(int); chromaloc_s= none(string); matrix_in= none(int); matrix_in_s= none(string); transfer_in= none(int); transfer_in_s= none(string); primaries_in= none(int); primaries_in_s= none(string); range_in= none(int); range_in_s= none(string); chromaloc_in= none(int); chromaloc_in_s= none(string); filter_param_a= none(float); filter_param_b= none(float); resample_filter_uv= none(string); filter_param_a_uv= none(float); filter_param_b_uv= none(float); dither_type= none(string); cpu_type= none(string); prefer_props= none(int); src_left= none(float); src_top= none(float); src_width= none(float); src_height= none(float); nominal_luminance= none(float)):ptr VSMap =
+proc point*(vsmap:ptr VSMap; width = none(int); height = none(int); format = none(int); matrix = none(int); matrix_s = none(string); transfer = none(int); transfer_s = none(string); primaries = none(int); primaries_s = none(string); range = none(int); range_s = none(string); chromaloc = none(int); chromaloc_s = none(string); matrix_in = none(int); matrix_in_s = none(string); transfer_in = none(int); transfer_in_s = none(string); primaries_in = none(int); primaries_in_s = none(string); range_in = none(int); range_in_s = none(string); chromaloc_in = none(int); chromaloc_in_s = none(string); filter_param_a = none(float); filter_param_b = none(float); resample_filter_uv = none(string); filter_param_a_uv = none(float); filter_param_b_uv = none(float); dither_type = none(string); cpu_type = none(string); prefer_props = none(int); src_left = none(float); src_top = none(float); src_width = none(float); src_height = none(float); nominal_luminance = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.resize")
   assert( plug != nil, "plugin \"com.vapoursynth.resize\" not installed properly in your computer") 
@@ -171,7 +168,6 @@ proc Point*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none(i
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if width.isSome: args.append("width", width.get)
   if height.isSome: args.append("height", height.get)
@@ -214,7 +210,7 @@ proc Point*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none(i
   API.freeMap(args)
 
 
-proc Spline16*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none(int); matrix= none(int); matrix_s= none(string); transfer= none(int); transfer_s= none(string); primaries= none(int); primaries_s= none(string); range= none(int); range_s= none(string); chromaloc= none(int); chromaloc_s= none(string); matrix_in= none(int); matrix_in_s= none(string); transfer_in= none(int); transfer_in_s= none(string); primaries_in= none(int); primaries_in_s= none(string); range_in= none(int); range_in_s= none(string); chromaloc_in= none(int); chromaloc_in_s= none(string); filter_param_a= none(float); filter_param_b= none(float); resample_filter_uv= none(string); filter_param_a_uv= none(float); filter_param_b_uv= none(float); dither_type= none(string); cpu_type= none(string); prefer_props= none(int); src_left= none(float); src_top= none(float); src_width= none(float); src_height= none(float); nominal_luminance= none(float)):ptr VSMap =
+proc spline16*(vsmap:ptr VSMap; width = none(int); height = none(int); format = none(int); matrix = none(int); matrix_s = none(string); transfer = none(int); transfer_s = none(string); primaries = none(int); primaries_s = none(string); range = none(int); range_s = none(string); chromaloc = none(int); chromaloc_s = none(string); matrix_in = none(int); matrix_in_s = none(string); transfer_in = none(int); transfer_in_s = none(string); primaries_in = none(int); primaries_in_s = none(string); range_in = none(int); range_in_s = none(string); chromaloc_in = none(int); chromaloc_in_s = none(string); filter_param_a = none(float); filter_param_b = none(float); resample_filter_uv = none(string); filter_param_a_uv = none(float); filter_param_b_uv = none(float); dither_type = none(string); cpu_type = none(string); prefer_props = none(int); src_left = none(float); src_top = none(float); src_width = none(float); src_height = none(float); nominal_luminance = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.resize")
   assert( plug != nil, "plugin \"com.vapoursynth.resize\" not installed properly in your computer") 
@@ -225,7 +221,6 @@ proc Spline16*(vsmap:ptr VSMap; width= none(int); height= none(int); format= non
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if width.isSome: args.append("width", width.get)
   if height.isSome: args.append("height", height.get)
@@ -268,7 +263,7 @@ proc Spline16*(vsmap:ptr VSMap; width= none(int); height= none(int); format= non
   API.freeMap(args)
 
 
-proc Spline36*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none(int); matrix= none(int); matrix_s= none(string); transfer= none(int); transfer_s= none(string); primaries= none(int); primaries_s= none(string); range= none(int); range_s= none(string); chromaloc= none(int); chromaloc_s= none(string); matrix_in= none(int); matrix_in_s= none(string); transfer_in= none(int); transfer_in_s= none(string); primaries_in= none(int); primaries_in_s= none(string); range_in= none(int); range_in_s= none(string); chromaloc_in= none(int); chromaloc_in_s= none(string); filter_param_a= none(float); filter_param_b= none(float); resample_filter_uv= none(string); filter_param_a_uv= none(float); filter_param_b_uv= none(float); dither_type= none(string); cpu_type= none(string); prefer_props= none(int); src_left= none(float); src_top= none(float); src_width= none(float); src_height= none(float); nominal_luminance= none(float)):ptr VSMap =
+proc spline36*(vsmap:ptr VSMap; width = none(int); height = none(int); format = none(int); matrix = none(int); matrix_s = none(string); transfer = none(int); transfer_s = none(string); primaries = none(int); primaries_s = none(string); range = none(int); range_s = none(string); chromaloc = none(int); chromaloc_s = none(string); matrix_in = none(int); matrix_in_s = none(string); transfer_in = none(int); transfer_in_s = none(string); primaries_in = none(int); primaries_in_s = none(string); range_in = none(int); range_in_s = none(string); chromaloc_in = none(int); chromaloc_in_s = none(string); filter_param_a = none(float); filter_param_b = none(float); resample_filter_uv = none(string); filter_param_a_uv = none(float); filter_param_b_uv = none(float); dither_type = none(string); cpu_type = none(string); prefer_props = none(int); src_left = none(float); src_top = none(float); src_width = none(float); src_height = none(float); nominal_luminance = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.resize")
   assert( plug != nil, "plugin \"com.vapoursynth.resize\" not installed properly in your computer") 
@@ -279,7 +274,6 @@ proc Spline36*(vsmap:ptr VSMap; width= none(int); height= none(int); format= non
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if width.isSome: args.append("width", width.get)
   if height.isSome: args.append("height", height.get)
@@ -322,7 +316,7 @@ proc Spline36*(vsmap:ptr VSMap; width= none(int); height= none(int); format= non
   API.freeMap(args)
 
 
-proc Spline64*(vsmap:ptr VSMap; width= none(int); height= none(int); format= none(int); matrix= none(int); matrix_s= none(string); transfer= none(int); transfer_s= none(string); primaries= none(int); primaries_s= none(string); range= none(int); range_s= none(string); chromaloc= none(int); chromaloc_s= none(string); matrix_in= none(int); matrix_in_s= none(string); transfer_in= none(int); transfer_in_s= none(string); primaries_in= none(int); primaries_in_s= none(string); range_in= none(int); range_in_s= none(string); chromaloc_in= none(int); chromaloc_in_s= none(string); filter_param_a= none(float); filter_param_b= none(float); resample_filter_uv= none(string); filter_param_a_uv= none(float); filter_param_b_uv= none(float); dither_type= none(string); cpu_type= none(string); prefer_props= none(int); src_left= none(float); src_top= none(float); src_width= none(float); src_height= none(float); nominal_luminance= none(float)):ptr VSMap =
+proc spline64*(vsmap:ptr VSMap; width = none(int); height = none(int); format = none(int); matrix = none(int); matrix_s = none(string); transfer = none(int); transfer_s = none(string); primaries = none(int); primaries_s = none(string); range = none(int); range_s = none(string); chromaloc = none(int); chromaloc_s = none(string); matrix_in = none(int); matrix_in_s = none(string); transfer_in = none(int); transfer_in_s = none(string); primaries_in = none(int); primaries_in_s = none(string); range_in = none(int); range_in_s = none(string); chromaloc_in = none(int); chromaloc_in_s = none(string); filter_param_a = none(float); filter_param_b = none(float); resample_filter_uv = none(string); filter_param_a_uv = none(float); filter_param_b_uv = none(float); dither_type = none(string); cpu_type = none(string); prefer_props = none(int); src_left = none(float); src_top = none(float); src_width = none(float); src_height = none(float); nominal_luminance = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.resize")
   assert( plug != nil, "plugin \"com.vapoursynth.resize\" not installed properly in your computer") 
@@ -333,7 +327,6 @@ proc Spline64*(vsmap:ptr VSMap; width= none(int); height= none(int); format= non
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if width.isSome: args.append("width", width.get)
   if height.isSome: args.append("height", height.get)

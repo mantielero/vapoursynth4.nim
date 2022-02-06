@@ -1,4 +1,4 @@
-proc GetLogLevel*():ptr VSMap =
+proc getLogLevel*():ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.ffms2")
   assert( plug != nil, "plugin \"com.vapoursynth.ffms2\" not installed properly in your computer") 
@@ -11,7 +11,7 @@ proc GetLogLevel*():ptr VSMap =
   API.freeMap(args)
 
 
-proc Index*(source:string; cachefile= none(string); indextracks= none(seq[int]); errorhandling= none(int); overwrite= none(int)):ptr VSMap =
+proc index*(source:string; cachefile = none(string); indextracks = none(seq[int]); errorhandling = none(int); overwrite = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.ffms2")
   assert( plug != nil, "plugin \"com.vapoursynth.ffms2\" not installed properly in your computer") 
@@ -29,7 +29,7 @@ proc Index*(source:string; cachefile= none(string); indextracks= none(seq[int]);
   API.freeMap(args)
 
 
-proc SetLogLevel*(level:int):ptr VSMap =
+proc setLogLevel*(level:int):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.ffms2")
   assert( plug != nil, "plugin \"com.vapoursynth.ffms2\" not installed properly in your computer") 
@@ -42,7 +42,7 @@ proc SetLogLevel*(level:int):ptr VSMap =
   API.freeMap(args)
 
 
-proc Source*(source:string; track= none(int); cache= none(int); cachefile= none(string); fpsnum= none(int); fpsden= none(int); threads= none(int); timecodes= none(string); seekmode= none(int); width= none(int); height= none(int); resizer= none(string); format= none(int); alpha= none(int)):ptr VSMap =
+proc source*(source:string; track = none(int); cache = none(int); cachefile = none(string); fpsnum = none(int); fpsden = none(int); threads = none(int); timecodes = none(string); seekmode = none(int); width = none(int); height = none(int); resizer = none(string); format = none(int); alpha = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.ffms2")
   assert( plug != nil, "plugin \"com.vapoursynth.ffms2\" not installed properly in your computer") 
@@ -69,7 +69,7 @@ proc Source*(source:string; track= none(int); cache= none(int); cachefile= none(
   API.freeMap(args)
 
 
-proc Version*():ptr VSMap =
+proc version*():ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.ffms2")
   assert( plug != nil, "plugin \"com.vapoursynth.ffms2\" not installed properly in your computer") 

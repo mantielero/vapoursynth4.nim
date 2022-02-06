@@ -1,4 +1,4 @@
-proc ClipInfo*(vsmap:ptr VSMap; alignment= none(int); scale= none(int)):ptr VSMap =
+proc clipInfo*(vsmap:ptr VSMap; alignment = none(int); scale = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.text")
   assert( plug != nil, "plugin \"com.vapoursynth.text\" not installed properly in your computer") 
@@ -9,7 +9,6 @@ proc ClipInfo*(vsmap:ptr VSMap; alignment= none(int); scale= none(int)):ptr VSMa
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if alignment.isSome: args.append("alignment", alignment.get)
   if scale.isSome: args.append("scale", scale.get)
@@ -18,7 +17,7 @@ proc ClipInfo*(vsmap:ptr VSMap; alignment= none(int); scale= none(int)):ptr VSMa
   API.freeMap(args)
 
 
-proc CoreInfo*(vsmap= none(ptr VSMap); alignment= none(int); scale= none(int)):ptr VSMap =
+proc coreInfo*(vsmap = none(ptr VSMap); alignment = none(int); scale = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.text")
   assert( plug != nil, "plugin \"com.vapoursynth.text\" not installed properly in your computer") 
@@ -32,8 +31,8 @@ proc CoreInfo*(vsmap= none(ptr VSMap); alignment= none(int); scale= none(int)):p
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
-  if clip.isSome: args.append("clip", clip.get)
+  if vsmap.isSome:
+    args.append("clip", clip)
   if alignment.isSome: args.append("alignment", alignment.get)
   if scale.isSome: args.append("scale", scale.get)
 
@@ -41,7 +40,7 @@ proc CoreInfo*(vsmap= none(ptr VSMap); alignment= none(int); scale= none(int)):p
   API.freeMap(args)
 
 
-proc FrameNum*(vsmap:ptr VSMap; alignment= none(int); scale= none(int)):ptr VSMap =
+proc frameNum*(vsmap:ptr VSMap; alignment = none(int); scale = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.text")
   assert( plug != nil, "plugin \"com.vapoursynth.text\" not installed properly in your computer") 
@@ -52,7 +51,6 @@ proc FrameNum*(vsmap:ptr VSMap; alignment= none(int); scale= none(int)):ptr VSMa
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if alignment.isSome: args.append("alignment", alignment.get)
   if scale.isSome: args.append("scale", scale.get)
@@ -61,7 +59,7 @@ proc FrameNum*(vsmap:ptr VSMap; alignment= none(int); scale= none(int)):ptr VSMa
   API.freeMap(args)
 
 
-proc FrameProps*(vsmap:ptr VSMap; props= none(seq[string]); alignment= none(int); scale= none(int)):ptr VSMap =
+proc frameProps*(vsmap:ptr VSMap; props = none(seq[string]); alignment = none(int); scale = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.text")
   assert( plug != nil, "plugin \"com.vapoursynth.text\" not installed properly in your computer") 
@@ -72,7 +70,6 @@ proc FrameProps*(vsmap:ptr VSMap; props= none(seq[string]); alignment= none(int)
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if props.isSome:
     for item in props.get:
@@ -84,7 +81,7 @@ proc FrameProps*(vsmap:ptr VSMap; props= none(seq[string]); alignment= none(int)
   API.freeMap(args)
 
 
-proc Text*(vsmap:ptr VSMap, text:string; alignment= none(int); scale= none(int)):ptr VSMap =
+proc text*(vsmap:ptr VSMap; text:string; alignment = none(int); scale = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.text")
   assert( plug != nil, "plugin \"com.vapoursynth.text\" not installed properly in your computer") 
@@ -95,7 +92,6 @@ proc Text*(vsmap:ptr VSMap, text:string; alignment= none(int); scale= none(int))
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("text", text)
   if alignment.isSome: args.append("alignment", alignment.get)

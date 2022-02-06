@@ -1,4 +1,4 @@
-proc Source*(source:string; track= none(int); adjustdelay= none(int); exactsamples= none(int); enable_drefs= none(int); use_absolute_path= none(int); drc_scale= none(float)):ptr VSMap =
+proc aSource*(source:string; track = none(int); adjustdelay = none(int); exactsamples = none(int); enable_drefs = none(int); use_absolute_path = none(int); drc_scale = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.bestaudiosource")
   assert( plug != nil, "plugin \"com.vapoursynth.bestaudiosource\" not installed properly in your computer") 

@@ -1,4 +1,4 @@
-proc AddBorders*(vsmap:ptr VSMap; left= none(int); right= none(int); top= none(int); bottom= none(int); color= none(seq[float])):ptr VSMap =
+proc addBorders*(vsmap:ptr VSMap; left = none(int); right = none(int); top = none(int); bottom = none(int); color = none(seq[float])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -9,7 +9,6 @@ proc AddBorders*(vsmap:ptr VSMap; left= none(int); right= none(int); top= none(i
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if left.isSome: args.append("left", left.get)
   if right.isSome: args.append("right", right.get)
@@ -21,7 +20,7 @@ proc AddBorders*(vsmap:ptr VSMap; left= none(int); right= none(int); top= none(i
   API.freeMap(args)
 
 
-proc AssumeFPS*(vsmap:ptr VSMap; src= none(ptr VSNode); fpsnum= none(int); fpsden= none(int)):ptr VSMap =
+proc assumeFPS*(vsmap:ptr VSMap; src = none(ptr VSNode); fpsnum = none(int); fpsden = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -32,7 +31,6 @@ proc AssumeFPS*(vsmap:ptr VSMap; src= none(ptr VSNode); fpsnum= none(int); fpsde
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if src.isSome: args.append("src", src.get)
   if fpsnum.isSome: args.append("fpsnum", fpsnum.get)
@@ -42,7 +40,7 @@ proc AssumeFPS*(vsmap:ptr VSMap; src= none(ptr VSNode); fpsnum= none(int); fpsde
   API.freeMap(args)
 
 
-proc AssumeSampleRate*(clip:ptr VSNode; src= none(ptr VSNode); samplerate= none(int)):ptr VSMap =
+proc assumeSampleRate*(vsmap:ptr VSMap; src = none(ptr VSNode); samplerate = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -62,7 +60,7 @@ proc AssumeSampleRate*(clip:ptr VSNode; src= none(ptr VSNode); samplerate= none(
   API.freeMap(args)
 
 
-proc AudioGain*(clip:ptr VSNode; gain= none(seq[float])):ptr VSMap =
+proc audioGain*(vsmap:ptr VSMap; gain = none(seq[float])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -81,7 +79,7 @@ proc AudioGain*(clip:ptr VSNode; gain= none(seq[float])):ptr VSMap =
   API.freeMap(args)
 
 
-proc AudioLoop*(clip:ptr VSNode; times= none(int)):ptr VSMap =
+proc audioLoop*(vsmap:ptr VSMap; times = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -100,7 +98,7 @@ proc AudioLoop*(clip:ptr VSNode; times= none(int)):ptr VSMap =
   API.freeMap(args)
 
 
-proc AudioMix*(clips:seq[ptr VSNode], matrix:seq[float], channels_out:seq[int]):ptr VSMap =
+proc audioMix*(vsmap:ptr VSMap; matrix:seq[float]; channels_out:seq[int]):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -121,7 +119,7 @@ proc AudioMix*(clips:seq[ptr VSNode], matrix:seq[float], channels_out:seq[int]):
   API.freeMap(args)
 
 
-proc AudioReverse*(clip:ptr VSNode):ptr VSMap =
+proc audioReverse*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -138,7 +136,7 @@ proc AudioReverse*(clip:ptr VSNode):ptr VSMap =
   API.freeMap(args)
 
 
-proc AudioSplice*(clips:seq[ptr VSNode]):ptr VSMap =
+proc audioSplice*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -155,7 +153,7 @@ proc AudioSplice*(clips:seq[ptr VSNode]):ptr VSMap =
   API.freeMap(args)
 
 
-proc AudioTrim*(clip:ptr VSNode; first= none(int); last= none(int); length= none(int)):ptr VSMap =
+proc audioTrim*(vsmap:ptr VSMap; first = none(int); last = none(int); length = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -176,7 +174,7 @@ proc AudioTrim*(clip:ptr VSNode; first= none(int); last= none(int); length= none
   API.freeMap(args)
 
 
-proc AverageFrames*(vsmap:ptr VSMap, weights:seq[float]; scale= none(float); scenechange= none(int); planes= none(seq[int])):ptr VSMap =
+proc averageFrames*(vsmap:ptr VSMap; weights:seq[float]; scale = none(float); scenechange = none(int); planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -187,9 +185,9 @@ proc AverageFrames*(vsmap:ptr VSMap, weights:seq[float]; scale= none(float); sce
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   for item in clips:
     args.append("clips", item)
+
   args.set("weights", weights)
   if scale.isSome: args.append("scale", scale.get)
   if scenechange.isSome: args.append("scenechange", scenechange.get)
@@ -199,7 +197,7 @@ proc AverageFrames*(vsmap:ptr VSMap, weights:seq[float]; scale= none(float); sce
   API.freeMap(args)
 
 
-proc Binarize*(vsmap:ptr VSMap; threshold= none(seq[float]); v0= none(seq[float]); v1= none(seq[float]); planes= none(seq[int])):ptr VSMap =
+proc binarize*(vsmap:ptr VSMap; threshold = none(seq[float]); v0 = none(seq[float]); v1 = none(seq[float]); planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -210,7 +208,6 @@ proc Binarize*(vsmap:ptr VSMap; threshold= none(seq[float]); v0= none(seq[float]
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if threshold.isSome: args.set("threshold", threshold.get)
   if v0.isSome: args.set("v0", v0.get)
@@ -221,7 +218,7 @@ proc Binarize*(vsmap:ptr VSMap; threshold= none(seq[float]); v0= none(seq[float]
   API.freeMap(args)
 
 
-proc BinarizeMask*(vsmap:ptr VSMap; threshold= none(seq[float]); v0= none(seq[float]); v1= none(seq[float]); planes= none(seq[int])):ptr VSMap =
+proc binarizeMask*(vsmap:ptr VSMap; threshold = none(seq[float]); v0 = none(seq[float]); v1 = none(seq[float]); planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -232,7 +229,6 @@ proc BinarizeMask*(vsmap:ptr VSMap; threshold= none(seq[float]); v0= none(seq[fl
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if threshold.isSome: args.set("threshold", threshold.get)
   if v0.isSome: args.set("v0", v0.get)
@@ -243,7 +239,7 @@ proc BinarizeMask*(vsmap:ptr VSMap; threshold= none(seq[float]); v0= none(seq[fl
   API.freeMap(args)
 
 
-proc BlankAudio*(clip= none(ptr VSNode); channels= none(int); bits= none(int); sampletype= none(int); samplerate= none(int); length= none(int); keep= none(int)):ptr VSMap =
+proc blankAudio*(vsmap = none(ptr VSMap); channels = none(int); bits = none(int); sampletype = none(int); samplerate = none(int); length = none(int); keep = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -258,7 +254,7 @@ proc BlankAudio*(clip= none(ptr VSNode); channels= none(int); bits= none(int); s
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
 
-  if clip.isSome: args.append("clip", clip.get)
+  if vsmap.isSome: args.append("clip", clip)
   if channels.isSome: args.append("channels", channels.get)
   if bits.isSome: args.append("bits", bits.get)
   if sampletype.isSome: args.append("sampletype", sampletype.get)
@@ -270,7 +266,7 @@ proc BlankAudio*(clip= none(ptr VSNode); channels= none(int); bits= none(int); s
   API.freeMap(args)
 
 
-proc BlankClip*(vsmap= none(ptr VSMap); width= none(int); height= none(int); format= none(int); length= none(int); fpsnum= none(int); fpsden= none(int); color= none(seq[float]); keep= none(int)):ptr VSMap =
+proc blankClip*(vsmap = none(ptr VSMap); width = none(int); height = none(int); format = none(int); length = none(int); fpsnum = none(int); fpsden = none(int); color = none(seq[float]); keep = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -284,8 +280,8 @@ proc BlankClip*(vsmap= none(ptr VSMap); width= none(int); height= none(int); for
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
-  if clip.isSome: args.append("clip", clip.get)
+  if vsmap.isSome:
+    args.append("clip", clip)
   if width.isSome: args.append("width", width.get)
   if height.isSome: args.append("height", height.get)
   if format.isSome: args.append("format", format.get)
@@ -299,7 +295,7 @@ proc BlankClip*(vsmap= none(ptr VSMap); width= none(int); height= none(int); for
   API.freeMap(args)
 
 
-proc BoxBlur*(vsmap:ptr VSMap; planes= none(seq[int]); hradius= none(int); hpasses= none(int); vradius= none(int); vpasses= none(int)):ptr VSMap =
+proc boxBlur*(vsmap:ptr VSMap; planes = none(seq[int]); hradius = none(int); hpasses = none(int); vradius = none(int); vpasses = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -310,7 +306,6 @@ proc BoxBlur*(vsmap:ptr VSMap; planes= none(seq[int]); hradius= none(int); hpass
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
   if hradius.isSome: args.append("hradius", hradius.get)
@@ -322,7 +317,7 @@ proc BoxBlur*(vsmap:ptr VSMap; planes= none(seq[int]); hradius= none(int); hpass
   API.freeMap(args)
 
 
-proc Cache*(vsmap:ptr VSMap; size= none(int); fixed= none(int); make_linear= none(int)):ptr VSMap =
+proc cache*(vsmap:ptr VSMap; size = none(int); fixed = none(int); make_linear = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -333,7 +328,6 @@ proc Cache*(vsmap:ptr VSMap; size= none(int); fixed= none(int); make_linear= non
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if size.isSome: args.append("size", size.get)
   if fixed.isSome: args.append("fixed", fixed.get)
@@ -343,7 +337,7 @@ proc Cache*(vsmap:ptr VSMap; size= none(int); fixed= none(int); make_linear= non
   API.freeMap(args)
 
 
-proc ClipToProp*(vsmap:ptr VSMap, mclip:ptr VSNode; prop= none(string)):ptr VSMap =
+proc clipToProp*(vsmap:ptr VSMap; mclip:ptr VSNode; prop = none(string)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -354,7 +348,6 @@ proc ClipToProp*(vsmap:ptr VSMap, mclip:ptr VSNode; prop= none(string)):ptr VSMa
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("mclip", mclip)
   if prop.isSome: args.append("prop", prop.get)
@@ -363,7 +356,7 @@ proc ClipToProp*(vsmap:ptr VSMap, mclip:ptr VSNode; prop= none(string)):ptr VSMa
   API.freeMap(args)
 
 
-proc Convolution*(vsmap:ptr VSMap, matrix:seq[float]; bias= none(float); divisor= none(float); planes= none(seq[int]); saturate= none(int); mode= none(string)):ptr VSMap =
+proc convolution*(vsmap:ptr VSMap; matrix:seq[float]; bias = none(float); divisor = none(float); planes = none(seq[int]); saturate = none(int); mode = none(string)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -374,7 +367,6 @@ proc Convolution*(vsmap:ptr VSMap, matrix:seq[float]; bias= none(float); divisor
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.set("matrix", matrix)
   if bias.isSome: args.append("bias", bias.get)
@@ -387,7 +379,7 @@ proc Convolution*(vsmap:ptr VSMap, matrix:seq[float]; bias= none(float); divisor
   API.freeMap(args)
 
 
-proc CopyFrameProps*(vsmap:ptr VSMap, prop_src:ptr VSNode):ptr VSMap =
+proc copyFrameProps*(vsmap:ptr VSMap; prop_src:ptr VSNode):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -398,7 +390,6 @@ proc CopyFrameProps*(vsmap:ptr VSMap, prop_src:ptr VSNode):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("prop_src", prop_src)
 
@@ -406,7 +397,7 @@ proc CopyFrameProps*(vsmap:ptr VSMap, prop_src:ptr VSNode):ptr VSMap =
   API.freeMap(args)
 
 
-proc Crop*(vsmap:ptr VSMap; left= none(int); right= none(int); top= none(int); bottom= none(int)):ptr VSMap =
+proc crop*(vsmap:ptr VSMap; left = none(int); right = none(int); top = none(int); bottom = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -417,7 +408,6 @@ proc Crop*(vsmap:ptr VSMap; left= none(int); right= none(int); top= none(int); b
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if left.isSome: args.append("left", left.get)
   if right.isSome: args.append("right", right.get)
@@ -428,7 +418,7 @@ proc Crop*(vsmap:ptr VSMap; left= none(int); right= none(int); top= none(int); b
   API.freeMap(args)
 
 
-proc CropAbs*(vsmap:ptr VSMap, width:int, height:int; left= none(int); top= none(int); x= none(int); y= none(int)):ptr VSMap =
+proc cropAbs*(vsmap:ptr VSMap; width:int; height:int; left = none(int); top = none(int); x = none(int); y = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -439,7 +429,6 @@ proc CropAbs*(vsmap:ptr VSMap, width:int, height:int; left= none(int); top= none
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("width", width)
   args.append("height", height)
@@ -452,7 +441,7 @@ proc CropAbs*(vsmap:ptr VSMap, width:int, height:int; left= none(int); top= none
   API.freeMap(args)
 
 
-proc CropRel*(vsmap:ptr VSMap; left= none(int); right= none(int); top= none(int); bottom= none(int)):ptr VSMap =
+proc cropRel*(vsmap:ptr VSMap; left = none(int); right = none(int); top = none(int); bottom = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -463,7 +452,6 @@ proc CropRel*(vsmap:ptr VSMap; left= none(int); right= none(int); top= none(int)
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if left.isSome: args.append("left", left.get)
   if right.isSome: args.append("right", right.get)
@@ -474,7 +462,7 @@ proc CropRel*(vsmap:ptr VSMap; left= none(int); right= none(int); top= none(int)
   API.freeMap(args)
 
 
-proc Deflate*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float)):ptr VSMap =
+proc deflate*(vsmap:ptr VSMap; planes = none(seq[int]); threshold = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -485,7 +473,6 @@ proc Deflate*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float)):p
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
   if threshold.isSome: args.append("threshold", threshold.get)
@@ -494,7 +481,7 @@ proc Deflate*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float)):p
   API.freeMap(args)
 
 
-proc DeleteFrames*(vsmap:ptr VSMap, frames:seq[int]):ptr VSMap =
+proc deleteFrames*(vsmap:ptr VSMap; frames:seq[int]):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -505,7 +492,6 @@ proc DeleteFrames*(vsmap:ptr VSMap, frames:seq[int]):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.set("frames", frames)
 
@@ -513,7 +499,7 @@ proc DeleteFrames*(vsmap:ptr VSMap, frames:seq[int]):ptr VSMap =
   API.freeMap(args)
 
 
-proc DoubleWeave*(vsmap:ptr VSMap; tff= none(int)):ptr VSMap =
+proc doubleWeave*(vsmap:ptr VSMap; tff = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -524,7 +510,6 @@ proc DoubleWeave*(vsmap:ptr VSMap; tff= none(int)):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if tff.isSome: args.append("tff", tff.get)
 
@@ -532,7 +517,7 @@ proc DoubleWeave*(vsmap:ptr VSMap; tff= none(int)):ptr VSMap =
   API.freeMap(args)
 
 
-proc DuplicateFrames*(vsmap:ptr VSMap, frames:seq[int]):ptr VSMap =
+proc duplicateFrames*(vsmap:ptr VSMap; frames:seq[int]):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -543,7 +528,6 @@ proc DuplicateFrames*(vsmap:ptr VSMap, frames:seq[int]):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.set("frames", frames)
 
@@ -551,7 +535,7 @@ proc DuplicateFrames*(vsmap:ptr VSMap, frames:seq[int]):ptr VSMap =
   API.freeMap(args)
 
 
-proc Expr*(vsmap:ptr VSMap, expr:seq[string]; format= none(int)):ptr VSMap =
+proc expr*(vsmap:ptr VSMap; expr:seq[string]; format = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -562,9 +546,9 @@ proc Expr*(vsmap:ptr VSMap, expr:seq[string]; format= none(int)):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   for item in clips:
     args.append("clips", item)
+
   for item in expr:
     args.append("expr", item)
   if format.isSome: args.append("format", format.get)
@@ -573,7 +557,7 @@ proc Expr*(vsmap:ptr VSMap, expr:seq[string]; format= none(int)):ptr VSMap =
   API.freeMap(args)
 
 
-proc FlipHorizontal*(vsmap:ptr VSMap):ptr VSMap =
+proc flipHorizontal*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -584,13 +568,13 @@ proc FlipHorizontal*(vsmap:ptr VSMap):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
+  args.append("clip", clip)
 
   result = API.invoke(plug, "FlipHorizontal".cstring, args)
   API.freeMap(args)
 
 
-proc FlipVertical*(vsmap:ptr VSMap):ptr VSMap =
+proc flipVertical*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -601,13 +585,13 @@ proc FlipVertical*(vsmap:ptr VSMap):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
+  args.append("clip", clip)
 
   result = API.invoke(plug, "FlipVertical".cstring, args)
   API.freeMap(args)
 
 
-proc FrameEval*(vsmap:ptr VSMap, eval:ptr VSFuncRef; prop_src= none(seq[ptr VSNode]); clip_src= none(seq[ptr VSNode])):ptr VSMap =
+proc frameEval*(vsmap:ptr VSMap; eval:ptr VSFunction; prop_src = none(seq[ptr VSNode]); clip_src = none(seq[ptr VSNode])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -618,7 +602,6 @@ proc FrameEval*(vsmap:ptr VSMap, eval:ptr VSFuncRef; prop_src= none(seq[ptr VSNo
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("eval", eval)
   if prop_src.isSome:
@@ -632,7 +615,7 @@ proc FrameEval*(vsmap:ptr VSMap, eval:ptr VSFuncRef; prop_src= none(seq[ptr VSNo
   API.freeMap(args)
 
 
-proc FreezeFrames*(vsmap:ptr VSMap, first:seq[int], last:seq[int], replacement:seq[int]):ptr VSMap =
+proc freezeFrames*(vsmap:ptr VSMap; first:seq[int]; last:seq[int]; replacement:seq[int]):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -643,7 +626,6 @@ proc FreezeFrames*(vsmap:ptr VSMap, first:seq[int], last:seq[int], replacement:s
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.set("first", first)
   args.set("last", last)
@@ -653,7 +635,7 @@ proc FreezeFrames*(vsmap:ptr VSMap, first:seq[int], last:seq[int], replacement:s
   API.freeMap(args)
 
 
-proc Inflate*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float)):ptr VSMap =
+proc inflate*(vsmap:ptr VSMap; planes = none(seq[int]); threshold = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -664,7 +646,6 @@ proc Inflate*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float)):p
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
   if threshold.isSome: args.append("threshold", threshold.get)
@@ -673,7 +654,7 @@ proc Inflate*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float)):p
   API.freeMap(args)
 
 
-proc Interleave*(vsmap:ptr VSMap; extend= none(int); mismatch= none(int); modify_duration= none(int)):ptr VSMap =
+proc interleave*(vsmap:ptr VSMap; extend = none(int); mismatch = none(int); modify_duration = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -684,9 +665,9 @@ proc Interleave*(vsmap:ptr VSMap; extend= none(int); mismatch= none(int); modify
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   for item in clips:
     args.append("clips", item)
+
   if extend.isSome: args.append("extend", extend.get)
   if mismatch.isSome: args.append("mismatch", mismatch.get)
   if modify_duration.isSome: args.append("modify_duration", modify_duration.get)
@@ -695,7 +676,7 @@ proc Interleave*(vsmap:ptr VSMap; extend= none(int); mismatch= none(int); modify
   API.freeMap(args)
 
 
-proc Invert*(vsmap:ptr VSMap; planes= none(seq[int])):ptr VSMap =
+proc invert*(vsmap:ptr VSMap; planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -706,7 +687,6 @@ proc Invert*(vsmap:ptr VSMap; planes= none(seq[int])):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
 
@@ -714,7 +694,7 @@ proc Invert*(vsmap:ptr VSMap; planes= none(seq[int])):ptr VSMap =
   API.freeMap(args)
 
 
-proc InvertMask*(vsmap:ptr VSMap; planes= none(seq[int])):ptr VSMap =
+proc invertMask*(vsmap:ptr VSMap; planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -725,7 +705,6 @@ proc InvertMask*(vsmap:ptr VSMap; planes= none(seq[int])):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
 
@@ -733,7 +712,7 @@ proc InvertMask*(vsmap:ptr VSMap; planes= none(seq[int])):ptr VSMap =
   API.freeMap(args)
 
 
-proc Levels*(vsmap:ptr VSMap; min_in= none(seq[float]); max_in= none(seq[float]); gamma= none(seq[float]); min_out= none(seq[float]); max_out= none(seq[float]); planes= none(seq[int])):ptr VSMap =
+proc levels*(vsmap:ptr VSMap; min_in = none(seq[float]); max_in = none(seq[float]); gamma = none(seq[float]); min_out = none(seq[float]); max_out = none(seq[float]); planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -744,7 +723,6 @@ proc Levels*(vsmap:ptr VSMap; min_in= none(seq[float]); max_in= none(seq[float])
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if min_in.isSome: args.set("min_in", min_in.get)
   if max_in.isSome: args.set("max_in", max_in.get)
@@ -757,7 +735,7 @@ proc Levels*(vsmap:ptr VSMap; min_in= none(seq[float]); max_in= none(seq[float])
   API.freeMap(args)
 
 
-proc Limiter*(vsmap:ptr VSMap; min= none(seq[float]); max= none(seq[float]); planes= none(seq[int])):ptr VSMap =
+proc limiter*(vsmap:ptr VSMap; min = none(seq[float]); max = none(seq[float]); planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -768,7 +746,6 @@ proc Limiter*(vsmap:ptr VSMap; min= none(seq[float]); max= none(seq[float]); pla
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if min.isSome: args.set("min", min.get)
   if max.isSome: args.set("max", max.get)
@@ -778,7 +755,7 @@ proc Limiter*(vsmap:ptr VSMap; min= none(seq[float]); max= none(seq[float]); pla
   API.freeMap(args)
 
 
-proc LoadAllPlugins*(path:string):ptr VSMap =
+proc loadAllPlugins*(path:string):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -791,7 +768,7 @@ proc LoadAllPlugins*(path:string):ptr VSMap =
   API.freeMap(args)
 
 
-proc LoadPlugin*(path:string; altsearchpath= none(int); forcens= none(string); forceid= none(string)):ptr VSMap =
+proc loadPlugin*(path:string; altsearchpath = none(int); forcens = none(string); forceid = none(string)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -808,7 +785,7 @@ proc LoadPlugin*(path:string; altsearchpath= none(int); forcens= none(string); f
   API.freeMap(args)
 
 
-proc Loop*(vsmap:ptr VSMap; times= none(int)):ptr VSMap =
+proc loop*(vsmap:ptr VSMap; times = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -819,7 +796,6 @@ proc Loop*(vsmap:ptr VSMap; times= none(int)):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if times.isSome: args.append("times", times.get)
 
@@ -827,7 +803,7 @@ proc Loop*(vsmap:ptr VSMap; times= none(int)):ptr VSMap =
   API.freeMap(args)
 
 
-proc Lut*(vsmap:ptr VSMap; planes= none(seq[int]); lut= none(seq[int]); lutf= none(seq[float]); function= none(ptr VSFuncRef); bits= none(int); floatout= none(int)):ptr VSMap =
+proc lut*(vsmap:ptr VSMap; planes = none(seq[int]); lut = none(seq[int]); lutf = none(seq[float]); function = none(ptr VSFunction); bits = none(int); floatout = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -838,7 +814,6 @@ proc Lut*(vsmap:ptr VSMap; planes= none(seq[int]); lut= none(seq[int]); lutf= no
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
   if lut.isSome: args.set("lut", lut.get)
@@ -851,7 +826,7 @@ proc Lut*(vsmap:ptr VSMap; planes= none(seq[int]); lut= none(seq[int]); lutf= no
   API.freeMap(args)
 
 
-proc Lut2*(vsmap:ptr VSMap, clipb:ptr VSNode; planes= none(seq[int]); lut= none(seq[int]); lutf= none(seq[float]); function= none(ptr VSFuncRef); bits= none(int); floatout= none(int)):ptr VSMap =
+proc lut2*(vsmap:ptr VSMap; clipb:ptr VSNode; planes = none(seq[int]); lut = none(seq[int]); lutf = none(seq[float]); function = none(ptr VSFunction); bits = none(int); floatout = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -862,7 +837,6 @@ proc Lut2*(vsmap:ptr VSMap, clipb:ptr VSNode; planes= none(seq[int]); lut= none(
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clipa", clipa)
   args.append("clipb", clipb)
   if planes.isSome: args.set("planes", planes.get)
@@ -876,7 +850,7 @@ proc Lut2*(vsmap:ptr VSMap, clipb:ptr VSNode; planes= none(seq[int]); lut= none(
   API.freeMap(args)
 
 
-proc MakeDiff*(vsmap:ptr VSMap, clipb:ptr VSNode; planes= none(seq[int])):ptr VSMap =
+proc makeDiff*(vsmap:ptr VSMap; clipb:ptr VSNode; planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -887,7 +861,6 @@ proc MakeDiff*(vsmap:ptr VSMap, clipb:ptr VSNode; planes= none(seq[int])):ptr VS
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clipa", clipa)
   args.append("clipb", clipb)
   if planes.isSome: args.set("planes", planes.get)
@@ -896,7 +869,7 @@ proc MakeDiff*(vsmap:ptr VSMap, clipb:ptr VSNode; planes= none(seq[int])):ptr VS
   API.freeMap(args)
 
 
-proc MaskedMerge*(vsmap:ptr VSMap, clipb:ptr VSNode, mask:ptr VSNode; planes= none(seq[int]); first_plane= none(int); premultiplied= none(int)):ptr VSMap =
+proc maskedMerge*(vsmap:ptr VSMap; clipb:ptr VSNode; mask:ptr VSNode; planes = none(seq[int]); first_plane = none(int); premultiplied = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -907,7 +880,6 @@ proc MaskedMerge*(vsmap:ptr VSMap, clipb:ptr VSNode, mask:ptr VSNode; planes= no
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clipa", clipa)
   args.append("clipb", clipb)
   args.append("mask", mask)
@@ -919,7 +891,7 @@ proc MaskedMerge*(vsmap:ptr VSMap, clipb:ptr VSNode, mask:ptr VSNode; planes= no
   API.freeMap(args)
 
 
-proc Maximum*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float); coordinates= none(seq[int])):ptr VSMap =
+proc maximum*(vsmap:ptr VSMap; planes = none(seq[int]); threshold = none(float); coordinates = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -930,7 +902,6 @@ proc Maximum*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float); c
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
   if threshold.isSome: args.append("threshold", threshold.get)
@@ -940,7 +911,7 @@ proc Maximum*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float); c
   API.freeMap(args)
 
 
-proc Median*(vsmap:ptr VSMap; planes= none(seq[int])):ptr VSMap =
+proc median*(vsmap:ptr VSMap; planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -951,7 +922,6 @@ proc Median*(vsmap:ptr VSMap; planes= none(seq[int])):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
 
@@ -959,7 +929,7 @@ proc Median*(vsmap:ptr VSMap; planes= none(seq[int])):ptr VSMap =
   API.freeMap(args)
 
 
-proc Merge*(vsmap:ptr VSMap, clipb:ptr VSNode; weight= none(seq[float])):ptr VSMap =
+proc merge*(vsmap:ptr VSMap; clipb:ptr VSNode; weight = none(seq[float])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -970,7 +940,6 @@ proc Merge*(vsmap:ptr VSMap, clipb:ptr VSNode; weight= none(seq[float])):ptr VSM
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clipa", clipa)
   args.append("clipb", clipb)
   if weight.isSome: args.set("weight", weight.get)
@@ -979,7 +948,7 @@ proc Merge*(vsmap:ptr VSMap, clipb:ptr VSNode; weight= none(seq[float])):ptr VSM
   API.freeMap(args)
 
 
-proc MergeDiff*(vsmap:ptr VSMap, clipb:ptr VSNode; planes= none(seq[int])):ptr VSMap =
+proc mergeDiff*(vsmap:ptr VSMap; clipb:ptr VSNode; planes = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -990,7 +959,6 @@ proc MergeDiff*(vsmap:ptr VSMap, clipb:ptr VSNode; planes= none(seq[int])):ptr V
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clipa", clipa)
   args.append("clipb", clipb)
   if planes.isSome: args.set("planes", planes.get)
@@ -999,7 +967,7 @@ proc MergeDiff*(vsmap:ptr VSMap, clipb:ptr VSNode; planes= none(seq[int])):ptr V
   API.freeMap(args)
 
 
-proc Minimum*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float); coordinates= none(seq[int])):ptr VSMap =
+proc minimum*(vsmap:ptr VSMap; planes = none(seq[int]); threshold = none(float); coordinates = none(seq[int])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1010,7 +978,6 @@ proc Minimum*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float); c
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
   if threshold.isSome: args.append("threshold", threshold.get)
@@ -1020,7 +987,7 @@ proc Minimum*(vsmap:ptr VSMap; planes= none(seq[int]); threshold= none(float); c
   API.freeMap(args)
 
 
-proc ModifyFrame*(vsmap:ptr VSMap, clips:seq[ptr VSNode], selector:ptr VSFuncRef):ptr VSMap =
+proc modifyFrame*(vsmap:ptr VSMap; clips:seq[ptr VSNode]; selector:ptr VSFunction):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1031,7 +998,6 @@ proc ModifyFrame*(vsmap:ptr VSMap, clips:seq[ptr VSNode], selector:ptr VSFuncRef
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   for item in clips:
     args.append("clips", item)
@@ -1041,7 +1007,7 @@ proc ModifyFrame*(vsmap:ptr VSMap, clips:seq[ptr VSNode], selector:ptr VSFuncRef
   API.freeMap(args)
 
 
-proc PEMVerifier*(vsmap:ptr VSMap; upper= none(seq[float]); lower= none(seq[float])):ptr VSMap =
+proc pEMVerifier*(vsmap:ptr VSMap; upper = none(seq[float]); lower = none(seq[float])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1052,7 +1018,6 @@ proc PEMVerifier*(vsmap:ptr VSMap; upper= none(seq[float]); lower= none(seq[floa
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if upper.isSome: args.set("upper", upper.get)
   if lower.isSome: args.set("lower", lower.get)
@@ -1061,7 +1026,7 @@ proc PEMVerifier*(vsmap:ptr VSMap; upper= none(seq[float]); lower= none(seq[floa
   API.freeMap(args)
 
 
-proc PlaneStats*(vsmap:ptr VSMap; clipb= none(ptr VSNode); plane= none(int); prop= none(string)):ptr VSMap =
+proc planeStats*(vsmap:ptr VSMap; clipb = none(ptr VSNode); plane = none(int); prop = none(string)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1072,7 +1037,6 @@ proc PlaneStats*(vsmap:ptr VSMap; clipb= none(ptr VSNode); plane= none(int); pro
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clipa", clipa)
   if clipb.isSome: args.append("clipb", clipb.get)
   if plane.isSome: args.append("plane", plane.get)
@@ -1082,7 +1046,7 @@ proc PlaneStats*(vsmap:ptr VSMap; clipb= none(ptr VSNode); plane= none(int); pro
   API.freeMap(args)
 
 
-proc PreMultiply*(vsmap:ptr VSMap, alpha:ptr VSNode):ptr VSMap =
+proc preMultiply*(vsmap:ptr VSMap; alpha:ptr VSNode):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1093,7 +1057,6 @@ proc PreMultiply*(vsmap:ptr VSMap, alpha:ptr VSNode):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("alpha", alpha)
 
@@ -1101,7 +1064,7 @@ proc PreMultiply*(vsmap:ptr VSMap, alpha:ptr VSNode):ptr VSMap =
   API.freeMap(args)
 
 
-proc Prewitt*(vsmap:ptr VSMap; planes= none(seq[int]); scale= none(float)):ptr VSMap =
+proc prewitt*(vsmap:ptr VSMap; planes = none(seq[int]); scale = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1112,7 +1075,6 @@ proc Prewitt*(vsmap:ptr VSMap; planes= none(seq[int]); scale= none(float)):ptr V
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
   if scale.isSome: args.append("scale", scale.get)
@@ -1121,7 +1083,7 @@ proc Prewitt*(vsmap:ptr VSMap; planes= none(seq[int]); scale= none(float)):ptr V
   API.freeMap(args)
 
 
-proc PropToClip*(vsmap:ptr VSMap; prop= none(string)):ptr VSMap =
+proc propToClip*(vsmap:ptr VSMap; prop = none(string)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1132,7 +1094,6 @@ proc PropToClip*(vsmap:ptr VSMap; prop= none(string)):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if prop.isSome: args.append("prop", prop.get)
 
@@ -1140,7 +1101,7 @@ proc PropToClip*(vsmap:ptr VSMap; prop= none(string)):ptr VSMap =
   API.freeMap(args)
 
 
-proc RemoveFrameProps*(vsmap:ptr VSMap; props= none(seq[string])):ptr VSMap =
+proc removeFrameProps*(vsmap:ptr VSMap; props = none(seq[string])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1151,7 +1112,6 @@ proc RemoveFrameProps*(vsmap:ptr VSMap; props= none(seq[string])):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if props.isSome:
     for item in props.get:
@@ -1161,7 +1121,7 @@ proc RemoveFrameProps*(vsmap:ptr VSMap; props= none(seq[string])):ptr VSMap =
   API.freeMap(args)
 
 
-proc Reverse*(vsmap:ptr VSMap):ptr VSMap =
+proc reverse*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1172,13 +1132,13 @@ proc Reverse*(vsmap:ptr VSMap):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
+  args.append("clip", clip)
 
   result = API.invoke(plug, "Reverse".cstring, args)
   API.freeMap(args)
 
 
-proc SelectEvery*(vsmap:ptr VSMap, cycle:int, offsets:seq[int]; modify_duration= none(int)):ptr VSMap =
+proc selectEvery*(vsmap:ptr VSMap; cycle:int; offsets:seq[int]; modify_duration = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1189,7 +1149,6 @@ proc SelectEvery*(vsmap:ptr VSMap, cycle:int, offsets:seq[int]; modify_duration=
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("cycle", cycle)
   args.set("offsets", offsets)
@@ -1199,7 +1158,7 @@ proc SelectEvery*(vsmap:ptr VSMap, cycle:int, offsets:seq[int]; modify_duration=
   API.freeMap(args)
 
 
-proc SeparateFields*(vsmap:ptr VSMap; tff= none(int); modify_duration= none(int)):ptr VSMap =
+proc separateFields*(vsmap:ptr VSMap; tff = none(int); modify_duration = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1210,7 +1169,6 @@ proc SeparateFields*(vsmap:ptr VSMap; tff= none(int); modify_duration= none(int)
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if tff.isSome: args.append("tff", tff.get)
   if modify_duration.isSome: args.append("modify_duration", modify_duration.get)
@@ -1219,7 +1177,7 @@ proc SeparateFields*(vsmap:ptr VSMap; tff= none(int); modify_duration= none(int)
   API.freeMap(args)
 
 
-proc SetAudioCache*(clip:ptr VSNode; mode= none(int); fixedsize= none(int); maxsize= none(int); maxhistory= none(int)):ptr VSMap =
+proc setAudioCache*(vsmap:ptr VSMap; mode = none(int); fixedsize = none(int); maxsize = none(int); maxhistory = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1241,7 +1199,7 @@ proc SetAudioCache*(clip:ptr VSNode; mode= none(int); fixedsize= none(int); maxs
   API.freeMap(args)
 
 
-proc SetFieldBased*(vsmap:ptr VSMap, value:int):ptr VSMap =
+proc setFieldBased*(vsmap:ptr VSMap; value:int):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1252,7 +1210,6 @@ proc SetFieldBased*(vsmap:ptr VSMap, value:int):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("value", value)
 
@@ -1260,7 +1217,7 @@ proc SetFieldBased*(vsmap:ptr VSMap, value:int):ptr VSMap =
   API.freeMap(args)
 
 
-proc SetFrameProp*(vsmap:ptr VSMap, prop:string; intval= none(seq[int]); floatval= none(seq[float]); data= none(seq[string])):ptr VSMap =
+proc setFrameProp*(vsmap:ptr VSMap; prop:string; intval = none(seq[int]); floatval = none(seq[float]); data = none(seq[string])):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1271,7 +1228,6 @@ proc SetFrameProp*(vsmap:ptr VSMap, prop:string; intval= none(seq[int]); floatva
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("prop", prop)
   if intval.isSome: args.set("intval", intval.get)
@@ -1284,7 +1240,7 @@ proc SetFrameProp*(vsmap:ptr VSMap, prop:string; intval= none(seq[int]); floatva
   API.freeMap(args)
 
 
-proc SetFrameProps*(vsmap:ptr VSMap, any:any):ptr VSMap =
+proc setFrameProps*(vsmap:ptr VSMap; any:any):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1295,7 +1251,6 @@ proc SetFrameProps*(vsmap:ptr VSMap, any:any):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   args.append("any", any)
 
@@ -1303,7 +1258,7 @@ proc SetFrameProps*(vsmap:ptr VSMap, any:any):ptr VSMap =
   API.freeMap(args)
 
 
-proc SetMaxCPU*(cpu:string):ptr VSMap =
+proc setMaxCPU*(cpu:string):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1316,7 +1271,7 @@ proc SetMaxCPU*(cpu:string):ptr VSMap =
   API.freeMap(args)
 
 
-proc SetVideoCache*(vsmap:ptr VSMap; mode= none(int); fixedsize= none(int); maxsize= none(int); maxhistory= none(int)):ptr VSMap =
+proc setVideoCache*(vsmap:ptr VSMap; mode = none(int); fixedsize = none(int); maxsize = none(int); maxhistory = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1327,7 +1282,6 @@ proc SetVideoCache*(vsmap:ptr VSMap; mode= none(int); fixedsize= none(int); maxs
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if mode.isSome: args.append("mode", mode.get)
   if fixedsize.isSome: args.append("fixedsize", fixedsize.get)
@@ -1338,7 +1292,7 @@ proc SetVideoCache*(vsmap:ptr VSMap; mode= none(int); fixedsize= none(int); maxs
   API.freeMap(args)
 
 
-proc ShuffleChannels*(clips:seq[ptr VSNode], channels_in:seq[int], channels_out:seq[int]):ptr VSMap =
+proc shuffleChannels*(vsmap:ptr VSMap; channels_in:seq[int]; channels_out:seq[int]):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1359,7 +1313,7 @@ proc ShuffleChannels*(clips:seq[ptr VSNode], channels_in:seq[int], channels_out:
   API.freeMap(args)
 
 
-proc ShufflePlanes*(vsmap:ptr VSMap, planes:seq[int], colorfamily:int):ptr VSMap =
+proc shufflePlanes*(vsmap:ptr VSMap; planes:seq[int]; colorfamily:int):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1370,9 +1324,9 @@ proc ShufflePlanes*(vsmap:ptr VSMap, planes:seq[int], colorfamily:int):ptr VSMap
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   for item in clips:
     args.append("clips", item)
+
   args.set("planes", planes)
   args.append("colorfamily", colorfamily)
 
@@ -1380,7 +1334,7 @@ proc ShufflePlanes*(vsmap:ptr VSMap, planes:seq[int], colorfamily:int):ptr VSMap
   API.freeMap(args)
 
 
-proc Sobel*(vsmap:ptr VSMap; planes= none(seq[int]); scale= none(float)):ptr VSMap =
+proc sobel*(vsmap:ptr VSMap; planes = none(seq[int]); scale = none(float)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1391,7 +1345,6 @@ proc Sobel*(vsmap:ptr VSMap; planes= none(seq[int]); scale= none(float)):ptr VSM
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if planes.isSome: args.set("planes", planes.get)
   if scale.isSome: args.append("scale", scale.get)
@@ -1400,7 +1353,7 @@ proc Sobel*(vsmap:ptr VSMap; planes= none(seq[int]); scale= none(float)):ptr VSM
   API.freeMap(args)
 
 
-proc Splice*(vsmap:ptr VSMap; mismatch= none(int)):ptr VSMap =
+proc splice*(vsmap:ptr VSMap; mismatch = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1411,16 +1364,16 @@ proc Splice*(vsmap:ptr VSMap; mismatch= none(int)):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   for item in clips:
     args.append("clips", item)
+
   if mismatch.isSome: args.append("mismatch", mismatch.get)
 
   result = API.invoke(plug, "Splice".cstring, args)
   API.freeMap(args)
 
 
-proc SplitChannels*(clip:ptr VSNode):ptr VSMap =
+proc splitChannels*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1437,7 +1390,7 @@ proc SplitChannels*(clip:ptr VSNode):ptr VSMap =
   API.freeMap(args)
 
 
-proc SplitPlanes*(vsmap:ptr VSMap):ptr VSMap =
+proc splitPlanes*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1448,13 +1401,13 @@ proc SplitPlanes*(vsmap:ptr VSMap):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
+  args.append("clip", clip)
 
   result = API.invoke(plug, "SplitPlanes".cstring, args)
   API.freeMap(args)
 
 
-proc StackHorizontal*(vsmap:ptr VSMap):ptr VSMap =
+proc stackHorizontal*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1465,13 +1418,15 @@ proc StackHorizontal*(vsmap:ptr VSMap):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
+  for item in clips:
+    args.append("clips", item)
 
 
   result = API.invoke(plug, "StackHorizontal".cstring, args)
   API.freeMap(args)
 
 
-proc StackVertical*(vsmap:ptr VSMap):ptr VSMap =
+proc stackVertical*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1482,13 +1437,15 @@ proc StackVertical*(vsmap:ptr VSMap):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
+  for item in clips:
+    args.append("clips", item)
 
 
   result = API.invoke(plug, "StackVertical".cstring, args)
   API.freeMap(args)
 
 
-proc TestAudio*(channels= none(int); bits= none(int); isfloat= none(int); samplerate= none(int); length= none(int)):ptr VSMap =
+proc testAudio*(channels = none(int); bits = none(int); isfloat = none(int); samplerate = none(int); length = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1506,7 +1463,7 @@ proc TestAudio*(channels= none(int); bits= none(int); isfloat= none(int); sample
   API.freeMap(args)
 
 
-proc Transpose*(vsmap:ptr VSMap):ptr VSMap =
+proc transpose*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1517,13 +1474,13 @@ proc Transpose*(vsmap:ptr VSMap):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
+  args.append("clip", clip)
 
   result = API.invoke(plug, "Transpose".cstring, args)
   API.freeMap(args)
 
 
-proc Trim*(vsmap:ptr VSMap; first= none(int); last= none(int); length= none(int)):ptr VSMap =
+proc trim*(vsmap:ptr VSMap; first = none(int); last = none(int); length = none(int)):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1534,7 +1491,6 @@ proc Trim*(vsmap:ptr VSMap; first= none(int); last= none(int); length= none(int)
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
   args.append("clip", clip)
   if first.isSome: args.append("first", first.get)
   if last.isSome: args.append("last", last.get)
@@ -1544,7 +1500,7 @@ proc Trim*(vsmap:ptr VSMap; first= none(int); last= none(int); length= none(int)
   API.freeMap(args)
 
 
-proc Turn180*(vsmap:ptr VSMap):ptr VSMap =
+proc turn180*(vsmap:ptr VSMap):ptr VSMap =
 
   let plug = getPluginById("com.vapoursynth.std")
   assert( plug != nil, "plugin \"com.vapoursynth.std\" not installed properly in your computer") 
@@ -1555,7 +1511,7 @@ proc Turn180*(vsmap:ptr VSMap):ptr VSMap =
 
   # Convert the function parameters into a VSMap (taking into account that some of them might be optional)
   let args = createMap()
-
+  args.append("clip", clip)
 
   result = API.invoke(plug, "Turn180".cstring, args)
   API.freeMap(args)
